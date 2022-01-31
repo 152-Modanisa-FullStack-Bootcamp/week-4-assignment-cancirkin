@@ -45,8 +45,7 @@ export default {
     watchVideo() {
       this.$router.push({ path: "watch", query: { id: this.video.id } });
     }
-  },
-
+  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-import {shallowMount} from "@vue/test-utils";
+import {mount, shallowMount} from "@vue/test-utils";
 import Home from "../Home.vue";
 import axios from 'axios'
 import API from "../../src/api";
@@ -17,7 +17,7 @@ describe("Home.vue", () => {
 
         it("should render video item components correctly", async () => {
             let video =
-                {
+                [{
                     "id": 1,
                     "videoAddress": "https://www.youtube.com/watch?v=FXpIoQ_rT_c",
                     "coverImage": "https://raw.githubusercontent.com/modanisa/bootcamp-video-db/main/video-images/1-cover.webp",
@@ -28,14 +28,13 @@ describe("Home.vue", () => {
                     "ownerImage": "https://yt3.ggpht.com/ytc/AKedOLTtJvQ1Vfew91vemeLaLdhjOwGx3tTBLlreK_QUyA=s68-c-k-c0x00ffffff-no-rj",
                     "ownerName": "freeCodeCamp.org",
                     "description": "Learn Vue 3 by in this full course. Vue.js is an open-source model–view–view model front end JavaScript framework for building user interfaces and single-page applications."
-                }
+                }]
 
-            API.getSpesificVideo.mockResolvedValue(video)
+            API.getVideos.mockResolvedValue(video)
             let wrapper
-            wrapper = shallowMount(Home)
+            wrapper = mount(Home)
             await flushPromises()
-
-            expect(wrapper.find("#video-title").text()).toEqual(video.title)
+            expect(wrapper.find("#video-title").text()).toEqual(video[0].title)
         })
     })
 })

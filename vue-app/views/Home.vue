@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Video from '../src/components/Video.vue';
+import API from "../src/api"
 
 export default {
   components: { Video },
@@ -19,15 +19,9 @@ export default {
       }
   },
   methods: {
-    getVideos() {
-      axios
-        .get("https://my-json-server.typicode.com/modanisa/bootcamp-video-db/videos")
-        .then((res) => {
-          this.videos = res.data
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    async getVideos() {
+      const response = await API.getVideos()
+      this.videos = response
     },
   },
 };
